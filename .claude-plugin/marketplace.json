@@ -1,0 +1,16 @@
+{
+  "name": "the-proxies-workflows",
+  "owner": {
+    "name": "The Proxies"
+  },
+  "plugins": [
+    {
+      "name": "the-proxies",
+      "source": "./",
+      "description": "Work with your Proxies business helpers, company knowledge and authorised connections in Claude. An existing Proxies workspace is required; new customers start with a consultation."
+    }
+  ],
+  "metadata": {
+    "description": "Business workflow skills for existing Proxies workspaces."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "the-proxies",
+  "displayName": "The Proxies",
+  "version": "1.0.0",
+  "description": "Work with your Proxies business helpers, company knowledge and authorised connections in Claude. An existing Proxies workspace is required; new customers start with a consultation.",
+  "author": {
+    "name": "The Proxies",
+    "url": "https://the-proxies.ai"
+  },
+  "homepage": "https://the-proxies.ai",
+  "repository": "https://github.com/the-proxies-ai/claude-plugin",
+  "license": "LicenseRef-Proprietary"
+}
