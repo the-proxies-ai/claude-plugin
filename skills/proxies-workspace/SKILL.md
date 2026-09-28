@@ -18,25 +18,28 @@ connection is available and the user has not chosen, ask which to use.
 Before sending private task data, establish identity from the selected MCP
 connection’s own workspace identity metadata/instructions. If these do not name
 the workspace, ask the user which business they selected at sign-in. Their
-explicit confirmation establishes this connection’s identity until the next
-recheck trigger below; continue with their task after that confirmation. Do not
-invent an identity tool: list_helpers and get_my_context are not identity
-lookups. Do not load memories, company knowledge or other records just to
-discover identity. Show the business name and the workspace slug, only if
-supplied by the instructions, to the user. Never invent an identifier. If they
-have not named the intended business, ask them to confirm the displayed business
-before sending private task data. If the user mentions multiple similarly named
-workspaces, ask them to check which workspace they selected at sign-in. The
-shared URL does not identify the workspace: OAuth selection does. If identity
-cannot be established or differs from the intended business, stop and ask the
-user to check their connection. Retrieve no business records until the intended
-workspace is established. Repeat the identity check and confirmation after
-re-authentication, reconnection or a connection switch. Also recheck after an
-auth/connection error, tool-list change, or when the user says they changed
-their connection. If the identity instructions have not visibly refreshed, ask
-them to confirm their sign-in workspace selection. Discover tools only within
-that connector; namespaces and tool sets vary. Never use another account to
-bypass server access decisions or subscription restrictions.
+explicit confirmation establishes this connection’s identity for this
+conversation only, until the next recheck trigger below; never persist or reuse
+it from memory. In this fallback, a business named in the task is not sign-in
+confirmation: always ask which business was selected at sign-in; continue with
+their task after that confirmation. Do not invent an identity tool: list_helpers
+and get_my_context are not identity lookups. Do not load memories, company
+knowledge or other records just to discover identity. Show the business name and
+the workspace slug, only if supplied by the instructions, to the user. Never
+invent an identifier. If they have not named the intended business, ask them to
+confirm the displayed business before sending private task data. If the user
+mentions multiple similarly named workspaces, ask them to check which workspace
+they selected at sign-in. The shared URL does not identify the workspace: OAuth
+selection does. If identity cannot be established or differs from the intended
+business, stop and ask the user to check their connection. Retrieve no business
+records until the intended workspace is established. Repeat the identity check
+and confirmation after re-authentication, reconnection or a connection switch.
+Also recheck after an auth/connection error, tool-list change, or when the user
+says they changed their connection. If the identity instructions have not
+visibly refreshed, ask them to confirm their sign-in workspace selection.
+Discover tools only within that connector; namespaces and tool sets vary. Never
+use another account to bypass server access decisions or subscription
+restrictions.
 
 If no connector is available, explain that after release Claude Code users can
 open /mcp to authenticate proxies-directory. For Claude web/Desktop, use
@@ -47,7 +50,7 @@ connected them. Direct new customers to https://the-proxies.ai/contact for an
 initial consultation. Do not ask for credentials in chat or invent a workspace
 URL.
 
-1. After the workspace is confirmed above, use the helper-listing tool to find
+1. After the workspace is established above, use the helper-listing tool to find
    enabled helpers. Never use get_my_context or memory tools to identify the
    business. Retrieve only the context needed for the confirmed task.
 2. Recommend the smallest relevant helper set and explain what each will do.
