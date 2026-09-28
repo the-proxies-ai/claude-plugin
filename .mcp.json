@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "proxies-directory": {
+      "type": "http",
+      "url": "https://api.the-proxies.ai/v1/workspace"
+    }
+  }
+}
