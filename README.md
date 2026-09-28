@@ -1,28 +1,29 @@
 # The Proxies for Claude
 
 Use your business’s Proxies helpers, company knowledge and authorised connections
-in Claude. This plugin supplies three workflow skills for your existing workspace.
+in Claude. This plugin bundles the live MCP connection and lightweight usage guidance.
+
+**Pre-release branch — not ready for customer installation.** The shared gateway
+connection must pass security review, deploy and fresh-client testing before this
+version is released or submitted. The public main branch is still version 1.0.0.
 
 ## Existing customers
 
-1. Install **The Proxies** plugin using the
-   [installation instructions below](#installation-outside-the-directory)
-   (Claude Code only until the directory listing is approved).
-2. Enable your existing Proxies workspace connector in Claude. If you have not
-   connected it yet, add the exact workspace URL provided during onboarding under
-   **Customize → Connectors**, then sign in through the Proxies login page.
-3. Ask “Which Proxies helpers can help me today?”, “Find our procedure for this”,
-   or “Draft a client update using our company voice”.
+The intended flow is **install → sign in → choose your workspace → connect**.
+This package includes the remote MCP configuration for
+`https://api.the-proxies.ai/v1/workspace`; the helpers, knowledge and business
+logic remain in the live Proxies service.
 
-Keep the workspace connector you already use. This plugin does not add a second
-connector or change your account. Each business has its own connection URL;
-contact support if you cannot find yours. Never enter your password into chat.
-If Claude cannot see which service a connector belongs to, it may ask you to
-confirm the Proxies workspace before using business information.
+On first use, verify your email and choose a shared sign-in password. Link each
+workspace once using its existing workspace password. Later sign-ins show your
+verified workspaces, including businesses that have different passwords. The
+selected workspace stays fixed for that connection. Passwords only go into the
+Proxies sign-in page, never chat.
 
-Your workspace membership, enabled helpers, subscription state and connected
-services determine what is available. Installing this plugin does not grant
-additional permissions or create a Proxies account.
+Existing workspace-specific connections continue to work. Avoid enabling both
+the old connection and the new plugin connection for the same business in a chat.
+Installing the plugin does not grant workspace membership or bypass billing.
+Additional simultaneous connections depend on the Claude host's support.
 
 ## New customers
 
@@ -46,7 +47,7 @@ the plugin requires a surface that supports skills and your remote connector.
 
 ## Data and privacy
 
-The plugin consists of a manifest and text instructions. It contains no credentials,
+The plugin consists of a manifest, remote MCP configuration and text instructions. It contains no credentials,
 client data, executable scripts, local server or telemetry. When you use a workflow,
 Claude may send relevant tool arguments to your authorised Proxies connector and
 receive workspace data. The connected service may read or write data according to
@@ -62,26 +63,15 @@ brief description of the problem, but do not send passwords or access tokens.
 
 ## Installation outside the directory
 
-Until a directory listing is approved, Claude Code users can add this repository
-as a plugin marketplace and install `the-proxies@the-proxies-workflows`.
-Connect your workspace in the Claude client where you use the plugin.
-For Claude Code, first check `/mcp`; do not add a duplicate if your workspace
-connector is already available. Otherwise use the exact HTTPS workspace URL
-supplied at onboarding:
-
-```sh
-claude mcp add --transport http --scope user proxies-workspace YOUR_WORKSPACE_URL
-```
-
-Replace `YOUR_WORKSPACE_URL` with your provided URL; it is not a password or API
-key. Each URL is specific to your business; do not reuse another organisation’s.
-In Claude Code, open `/mcp` and complete the Proxies OAuth sign-in if prompted.
-Connecting a service in one Claude client does not guarantee it is connected in
-every other client; verify its state in the client you are using.
+After this version is released, Claude Code users can install the marketplace:
 
 ```text
 /plugin marketplace add the-proxies-ai/claude-plugin
 /plugin install the-proxies@the-proxies-workflows
 ```
+
+Then open `/mcp` and complete OAuth for the bundled Proxies connection. Verify the
+workspace in the client you are using; connections do not automatically carry
+between Claude clients.
 
 Directory submission does not imply approval or endorsement by Anthropic.
