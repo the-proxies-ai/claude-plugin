@@ -92,8 +92,7 @@ Bundled MCP provisioning in Claude web/Desktop has not yet been verified for
 this release. If the host does not create the connection, open Customize →
 Connectors and add the workspace URL provided at onboarding, then complete
 sign-in. Installing skills alone does not establish a connection.
-In Claude Code, a
-workspace-specific connection can instead be added with:
+In Claude Code, a workspace-specific connection can instead be added with:
 
 ```text
 claude mcp add --transport http --scope user proxies-workspace YOUR_WORKSPACE_URL
@@ -113,6 +112,7 @@ skills to match observed results; do not describe an untested surface as
 supported.
 
 Verify that each advertised Claude surface supplies the server’s workspace identity
-instructions to the model. If not, document the explicit user-confirmation step.
+instructions to the model. If not, the skills ask the user to confirm the business
+they selected at sign-in before continuing with their task.
 A future gateway enhancement may include the workspace slug in those instructions
 to distinguish businesses with identical names.
