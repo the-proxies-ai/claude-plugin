@@ -13,8 +13,8 @@ to users.
 ## Existing customers
 
 The intended flow is **install → sign in → choose your workspace → connect**.
-This package includes the remote MCP configuration for `https://api.the-
-proxies.ai/v1/workspace`; the helpers, knowledge and business logic remain in
+This package includes the remote MCP configuration for
+`https://api.the-proxies.ai/v1/workspace`; the helpers, knowledge and business logic remain in
 the live Proxies service.
 
 Planned sign-in behaviour, pending live verification: on first use, verify your
@@ -89,12 +89,12 @@ connections do not automatically carry between Claude clients.
 
 Bundled MCP provisioning in Claude web/Desktop has not yet been verified for
 this release. If the host does not create the connection, open Customize →
-Connectors and add the workspace URL provided at onboarding, then complete sign-
-in. Installing skills alone does not establish a connection. In Claude Code, a
+Connectors and add the workspace URL provided at onboarding, then complete
+sign-in. Installing skills alone does not establish a connection. In Claude Code, a
 workspace-specific connection can instead be added with:
 
 ```text
-claude mcp add --transport http proxies-workspace YOUR_WORKSPACE_URL
+claude mcp add --transport http --scope user proxies-workspace YOUR_WORKSPACE_URL
 ```
 
 Replace the placeholder only with your actual onboarding URL. Do not enable this

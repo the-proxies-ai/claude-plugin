@@ -12,8 +12,8 @@ their Proxies connection before making the minimal identity lookup. The bundled
 connection is named proxies-directory (possibly under the plugin’s namespace).
 An existing connection may be named proxies-workspace. If both are available,
 prefer whichever connection the user already chose for this task; never combine
-their tool sets or silently switch. If the user has not selected one, ask which
-connection/business to use.
+their tool sets or silently switch. When more than one Proxies connection is
+available and the user has not chosen, ask which to use.
 
 Before sending private task data, use only a minimal workspace-identity/context
 lookup on the selected connector, with no private task arguments. Show the
@@ -24,7 +24,8 @@ workspace: OAuth selection does. If identity cannot be established or differs
 from the intended business, stop and ask the user to check their connection.
 Retrieve no business records until the intended workspace is established. Repeat
 the identity lookup and confirmation after re-authentication, reconnection or a
-connection switch. Discover tools only within that connector; namespaces and
+connection switch. Also recheck after an auth/connection error, tool-list change,
+or when the user says they changed their connection. Discover tools only within that connector; namespaces and
 tool sets vary. Never use another account to bypass server access decisions or
 subscription restrictions.
 
