@@ -15,15 +15,17 @@ prefer whichever connection the user already chose for this task; never combine
 their tool sets or silently switch. When more than one Proxies connection is
 available and the user has not chosen, ask which to use.
 
-Before sending private task data, use only a minimal workspace-identity/context
-lookup on the selected connector, with no private task arguments. Show the
+Before sending private task data, establish identity from the selected MCP
+connection’s own workspace identity metadata/instructions. If unavailable, use
+a dedicated identity-only lookup with no private task arguments. Do not load
+memories, company knowledge or other records just to discover identity. Show the
 returned business name and any returned workspace identifier to the user. If
 they have not named the intended business, ask them to confirm the displayed
 business before sending private task data. The shared URL does not identify the
 workspace: OAuth selection does. If identity cannot be established or differs
 from the intended business, stop and ask the user to check their connection.
 Retrieve no business records until the intended workspace is established. Repeat
-the identity lookup and confirmation after re-authentication, reconnection or a
+the identity check and confirmation after re-authentication, reconnection or a
 connection switch. Also recheck after an auth/connection error, tool-list change,
 or when the user says they changed their connection. Discover tools only within that connector; namespaces and
 tool sets vary. Never use another account to bypass server access decisions or
