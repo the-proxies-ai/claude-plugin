@@ -14,7 +14,8 @@ to users.
 
 The intended flow is **install → sign in → choose your workspace → connect**.
 This package includes the remote MCP configuration for
-`https://api.the-proxies.ai/v1/workspace`; the helpers, knowledge and business logic remain in
+`https://api.the-proxies.ai/v1/workspace`;
+the helpers, knowledge and business logic remain in
 the live Proxies service.
 
 Planned sign-in behaviour, pending live verification: on first use, verify your
@@ -90,7 +91,8 @@ connections do not automatically carry between Claude clients.
 Bundled MCP provisioning in Claude web/Desktop has not yet been verified for
 this release. If the host does not create the connection, open Customize →
 Connectors and add the workspace URL provided at onboarding, then complete
-sign-in. Installing skills alone does not establish a connection. In Claude Code, a
+sign-in. Installing skills alone does not establish a connection.
+In Claude Code, a
 workspace-specific connection can instead be added with:
 
 ```text
@@ -109,3 +111,8 @@ Before merging, verify the gateway and each advertised Claude surface. Update
 all prerelease and pending-verification wording in this README and all three
 skills to match observed results; do not describe an untested surface as
 supported.
+
+Verify that each advertised Claude surface supplies the server’s workspace identity
+instructions to the model. If not, document the explicit user-confirmation step.
+A future gateway enhancement may include the workspace slug in those instructions
+to distinguish businesses with identical names.
