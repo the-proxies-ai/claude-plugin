@@ -38,7 +38,7 @@ the Proxies sign-in page, never in chat.
 
 Existing workspace-specific connections keep their existing tools and access.
 These revised beta skills require `get_workspace_identity` on either a legacy or
-bundled connection and will not run until that gateway tool is deployed. The bundled server is
+bundled connection and stop if that identity check is unavailable or fails. The gateway tool is deployed. The bundled server is
 named `proxies-directory`, distinct from legacy `proxies-workspace`. Use one
 connection for a task. In Claude Code, open `/mcp`, select the unused connection
 and disable it using the available connection controls. In web/Desktop, manage
@@ -192,12 +192,12 @@ skills to match observed results; do not describe an untested surface as
 supported.
 
 The beta skills require a successful `get_workspace_identity` call on the selected
-connector before private reads. This gateway enhancement is implemented locally
-and is not yet deployed. Missing or failed identity checks stop the workflow;
-user recollection of sign-in is no longer a fallback. Release requires deployed
-legacy/modern parity and an actual web skill test using the returned business
-name and slug. Older installation receipts above cover the previous skill text,
-not acceptance of this revised identity requirement.
+connector before private reads. This gateway enhancement is deployed. Missing or failed identity checks stop the workflow;
+user recollection of sign-in is no longer a fallback. Legacy and modern registration parity passed SDK tests. Actual web and CLI beta.2
+checks verified Acacia’s returned name and slug before helper listing. The CLI
+also refused a Beacon request on the Acacia connection before listing helpers.
+The production modern-era flag was not enabled; no live modern rollout is claimed. Older knowledge and drafting receipts above cover the previous skill text;
+those workflows still need beta.2 acceptance.
 
 Release gate: the same-URL web-synced plus installed CLI connection must work without a workaround, or be explicitly documented as unsupported in the release. The current default combination is unsupported; only the session-only workaround above has passed.
 
