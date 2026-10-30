@@ -101,8 +101,10 @@ shared endpoint and correctly reported that authentication was needed. This
 proves local packaging and server discovery. A separate isolated installation
 from the GitHub feature branch also succeeded. Its real OAuth attempt was rejected
 before sign-in because the gateway did not accept Claude Code’s dynamic localhost
-callback port. The fix is tracked in platform PR #1778 and must be deployed and
-retested before authenticated use of this installed package is claimed.
+callback port. Platform PR #1778 is now deployed. The subsequent installed-plugin OAuth
+completed successfully, and a separate Claude Code MCP health check reported
+Connected. A model-issued tool call through this installed package remains
+unverified.
 
 ### Existing connections and other Claude surfaces
 
