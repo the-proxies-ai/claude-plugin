@@ -37,7 +37,7 @@ workspace is intended to stay fixed for that connection. Enter passwords only on
 the Proxies sign-in page, never in chat.
 
 Existing workspace-specific connections keep their existing tools and access.
-These revised beta skills require get_workspace_identity on either a legacy or
+These revised beta skills require `get_workspace_identity` on either a legacy or
 bundled connection and will not run until that gateway tool is deployed. The bundled server is
 named `proxies-directory`, distinct from legacy `proxies-workspace`. Use one
 connection for a task. In Claude Code, open `/mcp`, select the unused connection
@@ -155,7 +155,7 @@ the marketplace intentionally installs the stable version, even from this branch
 Do not advance the marketplace pin merely to run a beta test. In the 30 October test, importing the
 GitHub marketplace URL with a branch fragment displayed the older main-branch
 version 1.0.0 with skills only. Do not rely on that URL syntax to select this beta
-in Claude web. Verify version **1.1.0-beta.1**, **three skills** and **one connector**
+in Claude web. Verify version **1.1.0-beta.2**, **three skills** and **one connector**
 after upload. This remains an acceptance-test procedure, not a customer release.
 
 ### Existing connections and other Claude surfaces
