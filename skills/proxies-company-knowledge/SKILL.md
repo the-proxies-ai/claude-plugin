@@ -3,20 +3,51 @@ name: proxies-company-knowledge
 description: Find company procedures, brand guidance or business information in the user’s Proxies workspace when they ask a question that needs their organisation’s knowledge.
 ---
 
-Use only the Proxies connector the user has authorised for the intended workspace.
-Identify The Proxies by its connector configuration: the HTTPS server hostname
-must be exactly api.the-proxies.ai, with the workspace URL supplied at onboarding.
-Do not match unrelated proxy/scraping tools just because their name contains
-"proxies". If the host and workspace cannot be established from trusted connector
-configuration or the user’s confirmation, ask before sending business data.
-Discover tools only within that selected connector; namespaces and tool sets vary.
-If multiple workspaces could match, ask which business the user means before
-reading private context. Never use an account other than the one the user authorised.
-If no workspace connector is available, explain how to enable their existing
-connection; direct new customers to https://the-proxies.ai/contact for an initial
-consultation. Do not ask for credentials in chat or invent a connection URL.
-Respect server access decisions and subscription restrictions; do not retry
-through a different account to bypass them.
+Use only the Proxies connector the user has authorised for the intended
+workspace. Identify The Proxies by trusted connector configuration: its HTTPS
+hostname must be exactly api.the-proxies.ai, using the bundled /v1/workspace
+connection or the workspace-specific URL supplied at onboarding. Tool names
+alone are not proof. If the URL is not visible, ask the user to confirm this is
+their Proxies connection before using its workspace identity tool.
+The bundled connection is named proxies-directory (possibly under the plugin’s
+namespace). An existing connection may be named proxies-workspace. If both are
+available, prefer whichever connection the user already chose for this task;
+never combine their tool sets or silently switch. When more than one Proxies
+connection is available and the user has not chosen, ask which to use.
+
+Before sending private task data, call get_workspace_identity with no arguments
+on that selected connector. Use its returned workspace.name and workspace.slug;
+never infer the connection's identity from the task, chat memory, helper names,
+or the user's recollection of sign-in. Do not load memories, company knowledge
+or other business records to discover identity. Show the returned business name.
+If no intended business is stated, ask the user to confirm the shown business
+name before private reads. If the intended business name matches exactly and any supplied workspace slug
+also matches, continue without asking again. If the name match is uncertain or
+multiple businesses share the name, ask the user to confirm the returned slug
+before continuing. Never invent an identifier.
+
+If the tool is missing, fails, returns a missing or empty workspace.name or
+workspace.slug, or names a different business or supplied slug, stop before private
+reads and ask the user to refresh the connector's tool list or reconnect to the
+intended workspace. A confirmation cannot substitute for a successful server
+identity check. Recheck after re-authentication, reconnection, a connection switch,
+an auth/connection error, a tool-list change, or when the user says they changed
+their connection. Keep all subsequent calls on the same verified connector.
+Discover tools only within that connector; namespaces and tool sets vary. Never
+use another account to bypass server access decisions or subscription
+restrictions.
+
+If no connector is available, explain that after release Claude Code users can
+open /mcp to authenticate proxies-directory. For Claude web/Desktop, use
+Customize → Connectors with the workspace URL supplied during onboarding unless
+the host has visibly provisioned the bundled connection. Bundled provisioning on
+those surfaces is pending verification; do not claim installation alone
+connected them. If the same URL is also connected through Claude web, the CLI
+may suppress both connections. See the README duplicate-connector workaround;
+a session launched with ENABLE_CLAUDEAI_MCP_SERVERS=false excludes web-synced
+connectors for that process only. Direct new customers to https://the-proxies.ai/contact for an
+initial consultation. Do not ask for credentials in chat or invent a workspace
+URL.
 
 1. Identify the concrete question and search only relevant company knowledge or
    context resources exposed by the selected connector.
