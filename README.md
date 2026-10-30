@@ -118,8 +118,26 @@ from the GitHub feature branch also succeeded. Its real OAuth attempt was reject
 before sign-in because the gateway did not accept Claude Code’s dynamic localhost
 callback port. Platform PR #1778 is now deployed. The subsequent installed-plugin OAuth
 completed successfully, and a separate Claude Code MCP health check reported
-Connected. A model-issued tool call through this installed package remains
-unverified.
+Connected. A model-issued list_helpers call through the installed package also
+passed with the session-only duplicate-connector workaround below; server
+instructions identified the selected fictional Acacia workspace.
+
+### Claude Code with the same connection already in Claude web
+
+In Claude Code 2.1.314, the installed plugin and a web-synced connector using the
+same URL suppressed each other in our test: the health check passed, but model
+sessions had no plugin tools. For an isolated plugin session, Anthropic documents:
+
+```sh
+ENABLE_CLAUDEAI_MCP_SERVERS=false claude
+```
+
+This excludes web-synced connectors from that process, including any other web
+connections you normally use there. It does not disconnect them in Claude web or
+change their authorisation. The installed Proxies plugin then successfully listed
+Acacia's helpers and supplied its workspace identity. Do not treat this workaround
+as proof that the default duplicate-connection case works. See the
+[Claude Code connector controls](https://code.claude.com/docs/en/mcp#disable-claude-ai-connectors).
 
 ### Prerelease testing in Claude web
 
