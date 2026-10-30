@@ -94,7 +94,11 @@ connections do not automatically carry between Claude clients.
 ### Existing connections and other Claude surfaces
 
 Bundled MCP provisioning in Claude web/Desktop has not yet been verified for
-this release. If the host does not create the connection, open Customize →
+this release. A manual custom connection in Claude web was verified on
+30 October 2026: email verification, membership linking, workspace selection,
+OAuth callback and a read-only fictional-workspace helper call all succeeded.
+This does not establish bundled plugin installation or directory approval.
+If the host does not create the connection, open Customize →
 Connectors and add the workspace URL provided at onboarding, then complete
 sign-in. Installing skills alone does not establish a connection.
 In Claude Code, a workspace-specific connection can instead be added with:
@@ -119,5 +123,8 @@ supported.
 Verify that each advertised Claude surface supplies the server’s workspace identity
 instructions to the model. If not, the skills ask the user to confirm the business
 they selected at sign-in before continuing with their task.
+In the 30 October Claude web test, the model reported that the server identity
+instructions were unavailable. Expect the plugin's sign-in-workspace confirmation
+fallback on that surface; installation alone does not prove workspace identity.
 A future gateway enhancement may include the workspace slug in those instructions
 to distinguish businesses with identical names.
