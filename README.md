@@ -194,10 +194,9 @@ supported.
 The beta skills require a successful `get_workspace_identity` call on the selected
 connector before private reads. This gateway enhancement is deployed. Missing or failed identity checks stop the workflow;
 user recollection of sign-in is no longer a fallback. Legacy and modern registration parity passed SDK tests. Actual web and CLI beta.2
-checks verified Acacia’s returned name and slug before helper listing. The CLI
-also refused a Beacon request on the Acacia connection before listing helpers.
-The production modern-era flag was not enabled; no live modern rollout is claimed. Older knowledge and drafting receipts above cover the previous skill text;
-those workflows still need beta.2 acceptance.
+checks verified Acacia’s returned name and slug before helper listing. Both hosts
+also refused a Beacon request on the Acacia connection before further business reads.
+The production modern-era flag was not enabled; no live modern rollout is claimed. Beta.2 CLI company knowledge and chat-only drafting also passed with identity first and no permission denials, using the isolated profile and documented process-only workaround. Beta.2 web knowledge and drafting also passed with the installed slash commands on the existing authenticated reviewer connection; the drafting trace confirms its skill load. Fresh bundled provisioning remains separate from these workflow checks.
 
 Release gate: the same-URL web-synced plus installed CLI connection must work without a workaround, or be explicitly documented as unsupported in the release. The current default combination is unsupported; only the session-only workaround above has passed.
 
