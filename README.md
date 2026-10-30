@@ -98,8 +98,11 @@ On 30 October 2026, Claude Code installed this prerelease from a local marketpla
 into an isolated configuration. Its inventory found all three skills and the
 bundled `proxies-directory` HTTP server. The server health check reached the
 shared endpoint and correctly reported that authentication was needed. This
-proves local packaging and server discovery; GitHub distribution and authenticated
-use of the installed package remain unverified.
+proves local packaging and server discovery. A separate isolated installation
+from the GitHub feature branch also succeeded. Its real OAuth attempt was rejected
+before sign-in because the gateway did not accept Claude Code’s dynamic localhost
+callback port. The fix is tracked in platform PR #1778 and must be deployed and
+retested before authenticated use of this installed package is claimed.
 
 ### Existing connections and other Claude surfaces
 
