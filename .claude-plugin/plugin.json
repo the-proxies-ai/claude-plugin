@@ -9,5 +9,6 @@
   },
   "homepage": "https://the-proxies.ai",
   "repository": "https://github.com/the-proxies-ai/claude-plugin",
-  "license": "LicenseRef-Proprietary"
+  "license": "LicenseRef-Proprietary",
+  "privacyPolicyUrl": "https://the-proxies.ai/privacy"
 }

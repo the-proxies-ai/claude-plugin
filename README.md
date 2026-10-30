@@ -92,6 +92,15 @@ Then open `/mcp` and complete OAuth for `proxies-directory` (which may appear
 under the plugin namespace). Verify the workspace in the client you are using;
 connections do not automatically carry between Claude clients.
 
+### Installation verification
+
+On 30 October 2026, Claude Code installed this prerelease from a local marketplace
+into an isolated configuration. Its inventory found all three skills and the
+bundled `proxies-directory` HTTP server. The server health check reached the
+shared endpoint and correctly reported that authentication was needed. This
+proves local packaging and server discovery; GitHub distribution and authenticated
+use of the installed package remain unverified.
+
 ### Existing connections and other Claude surfaces
 
 Bundled MCP provisioning in Claude web/Desktop has not yet been verified for
