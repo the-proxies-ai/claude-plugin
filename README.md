@@ -1,18 +1,23 @@
 # The Proxies for Claude
 
 Use your business’s Proxies helpers, company knowledge and authorised
-connections in Claude. This prerelease bundles a remote MCP connection (pending
-gateway activation) and lightweight usage guidance.
+connections in Claude. This prerelease bundles a remote MCP connection and
+lightweight usage guidance. The shared gateway is live; end-to-end installation
+and sign-in testing for this package is still in progress.
 
 **Pre-release branch — not ready for customer installation.** The shared gateway
-connection must pass security review, deploy and fresh-client testing before
-this version is released or submitted. Keep this change in its draft PR until
-those gates pass. Merging the manifest to the tracked branch makes it available
-to users.
+connection must pass fresh-client testing before this version is released.
+Directory policy eligibility is a separate unresolved gate; successful connection
+testing does not establish directory approval. Keep this change in its draft PR
+until the release gates pass. Merging the manifest to the tracked branch makes
+it available to users.
 
 ## Existing customers
 
-The intended flow is **install → sign in → choose your workspace → connect**.
+The intended flow is **install → sign in → connect your workspace**. An onboarding
+update is being tested to connect a sole linked workspace automatically when
+there are no additional memberships to link. People with multiple eligible
+workspaces retain a chooser. This update has not yet shipped.
 This package includes the remote MCP configuration for
 `https://api.the-proxies.ai/v1/workspace`;
 the helpers, knowledge and business logic remain in
