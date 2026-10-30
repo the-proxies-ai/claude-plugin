@@ -121,13 +121,25 @@ completed successfully, and a separate Claude Code MCP health check reported
 Connected. A model-issued tool call through this installed package remains
 unverified.
 
+### Prerelease testing in Claude web
+
+The tested route is **Customize → Plugins → Add plugin → Upload plugin**, using
+an archive of this exact prerelease commit. In the 30 October test, importing the
+GitHub marketplace URL with a branch fragment displayed the older main-branch
+version 1.0.0 with skills only. Do not rely on that URL syntax to select this beta
+in Claude web. Verify version **1.1.0-beta.1**, **three skills** and **one connector**
+after upload. This remains an acceptance-test procedure, not a customer release.
+
 ### Existing connections and other Claude surfaces
 
-Bundled MCP provisioning in Claude web/Desktop has not yet been verified for
-this release. A manual custom connection in Claude web was verified on
+Claude web ZIP installation was verified for version 1.1.0-beta.1: three skills
+and one bundled connector. Claude reused an existing authenticated test connection
+for the shared URL. All three installed skills loaded and completed read-only
+fictional workspace, knowledge and drafting checks. Fresh bundled OAuth and
+Desktop installation remain unverified. A manual custom connection in Claude web was verified on
 30 October 2026: email verification, membership linking, workspace selection,
 OAuth callback and a read-only fictional-workspace helper call all succeeded.
-This does not establish bundled plugin installation or directory approval.
+This manual connection test does not establish fresh bundled OAuth or directory approval.
 If the host does not create the connection, open Customize →
 Connectors and add the workspace URL provided at onboarding, then complete
 sign-in. Installing skills alone does not establish a connection.
