@@ -9,8 +9,10 @@ and sign-in testing for this package is still in progress.
 connection must pass fresh-client testing before this version is released.
 Directory policy eligibility is a separate unresolved gate; successful connection
 testing does not establish directory approval. Keep this change in its draft PR
-until the release gates pass. Merging the manifest to the tracked branch makes
-it available to users.
+until the release gates pass. The marketplace entry is pinned to the released
+1.0.0 commit (`a15ef7782cfa8cbb01b45259703d4862649f4bc1`), so merging
+this beta does not move marketplace users onto its bundled connection. Advancing
+that pin requires a separate reviewed release change after acceptance.
 
 ## Existing customers
 
@@ -24,10 +26,10 @@ This package includes the remote MCP configuration for
 the helpers, knowledge and business logic remain in
 the live Proxies service.
 
-Planned sign-in behaviour, pending live verification: on first use, verify your
+The manual web sign-in flow was verified: on first use, verify your
 email and choose a personal Proxies sign-in password (do not share it). Link
 each workspace using the existing password for your own active member account
-with that same email address. The planned authorisation requires both the
+with that same email address. Authorisation requires both the
 matching email and that member’s password. Later sign-ins will show verified
 workspaces, including businesses with different member passwords. The selected
 workspace is intended to stay fixed for that connection. Enter passwords only on
@@ -96,7 +98,9 @@ description of the problem, but do not send passwords or access tokens.
 
 ## Installation outside the directory
 
-After this version is released, Claude Code users can install the marketplace:
+The marketplace currently installs the pinned 1.0.0 skills-only release. After
+acceptance and a reviewed update to the release pin, these same commands will
+install the bundled-connection version:
 
 ```text
 /plugin marketplace add the-proxies-ai/claude-plugin
@@ -116,7 +120,7 @@ shared endpoint and correctly reported that authentication was needed. This
 proves local packaging and server discovery. A separate isolated installation
 from the GitHub feature branch also succeeded. Its real OAuth attempt was rejected
 before sign-in because the gateway did not accept Claude Code’s dynamic localhost
-callback port. Platform PR #1778 is now deployed. The subsequent installed-plugin OAuth
+callback port. A gateway update is now deployed. The subsequent installed-plugin OAuth
 completed successfully, and a separate Claude Code MCP health check reported
 Connected. A model-issued list_helpers call through the installed package also
 passed with the session-only duplicate-connector workaround below; server
@@ -142,7 +146,10 @@ as proof that the default duplicate-connection case works. See the
 ### Prerelease testing in Claude web
 
 The tested route is **Customize → Plugins → Add plugin → Upload plugin**, using
-an archive of this exact prerelease commit. In the 30 October test, importing the
+an archive of this exact prerelease commit. For further CLI beta tests, use
+`claude --plugin-dir /absolute/path/to/this/checkout` in the isolated test profile;
+the marketplace intentionally installs the stable version, even from this branch.
+Do not advance the marketplace pin merely to run a beta test. In the 30 October test, importing the
 GitHub marketplace URL with a branch fragment displayed the older main-branch
 version 1.0.0 with skills only. Do not rely on that URL syntax to select this beta
 in Claude web. Verify version **1.1.0-beta.1**, **three skills** and **one connector**
@@ -180,11 +187,12 @@ all prerelease and pending-verification wording in this README and all three
 skills to match observed results; do not describe an untested surface as
 supported.
 
-Verify that each advertised Claude surface supplies the server’s workspace identity
-instructions to the model. If not, the skills ask the user to confirm the business
-they selected at sign-in before continuing with their task.
-In the 30 October Claude web test, the model reported that the server identity
-instructions were unavailable. Expect the plugin's sign-in-workspace confirmation
-fallback on that surface; installation alone does not prove workspace identity.
-A future gateway enhancement may include the workspace slug in those instructions
-to distinguish businesses with identical names.
+The beta skills require a successful `get_workspace_identity` call on the selected
+connector before private reads. This gateway enhancement is implemented locally
+and is not yet deployed. Missing or failed identity checks stop the workflow;
+user recollection of sign-in is no longer a fallback. Release requires deployed
+legacy/modern parity and an actual web skill test using the returned business
+name and slug. Older installation receipts above cover the previous skill text,
+not acceptance of this revised identity requirement.
+
+Release gate: the same-URL web-synced plus installed CLI connection must work without a workaround, or be explicitly documented as unsupported in the release. The current default combination is unsupported; only the session-only workaround above has passed.

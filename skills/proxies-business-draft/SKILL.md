@@ -8,35 +8,28 @@ workspace. Identify The Proxies by trusted connector configuration: its HTTPS
 hostname must be exactly api.the-proxies.ai, using the bundled /v1/workspace
 connection or the workspace-specific URL supplied at onboarding. Tool names
 alone are not proof. If the URL is not visible, ask the user to confirm this is
-their Proxies connection before relying on its workspace identity instructions.
+their Proxies connection before using its workspace identity tool.
 The bundled connection is named proxies-directory (possibly under the plugin’s
 namespace). An existing connection may be named proxies-workspace. If both are
 available, prefer whichever connection the user already chose for this task;
 never combine their tool sets or silently switch. When more than one Proxies
 connection is available and the user has not chosen, ask which to use.
 
-Before sending private task data, establish identity from the selected MCP
-connection’s own workspace identity metadata/instructions. If these do not name
-the workspace, ask the user which business they selected at sign-in. Their
-explicit confirmation establishes this connection’s identity for this
-conversation only, until the next recheck trigger below; never persist or reuse
-it from memory. In this fallback, a business named in the task is not sign-in
-confirmation: always ask which business was selected at sign-in; continue with
-their task after that confirmation. Do not invent an identity tool: list_helpers
-and get_my_context are not identity lookups. Do not load memories, company
-knowledge or other records just to discover identity. Show the business name and
-the workspace slug, only if supplied by the instructions, to the user. Never
-invent an identifier. If they have not named the intended business, ask them to
-confirm the displayed business before sending private task data. If the user
-mentions multiple similarly named workspaces, ask them to check which workspace
-they selected at sign-in. The shared URL does not identify the workspace: OAuth
-selection does. If identity cannot be established or differs from the intended
-business, stop and ask the user to check their connection. Retrieve no business
-records until the intended workspace is established. Repeat the identity check
-and confirmation after re-authentication, reconnection or a connection switch.
-Also recheck after an auth/connection error, tool-list change, or when the user
-says they changed their connection. If the identity instructions have not
-visibly refreshed, ask them to confirm their sign-in workspace selection.
+Before sending private task data, call get_workspace_identity with no arguments
+on that selected connector. Use its returned workspace.name and workspace.slug;
+never infer the connection's identity from the task, chat memory, helper names,
+or the user's recollection of sign-in. Do not load memories, company knowledge
+or other business records to discover identity. Show the returned business name.
+If the intended business is already clear and matches, continue without asking
+again. Otherwise ask the user to confirm that business; use the returned slug to
+distinguish similarly named businesses. Never invent an identifier.
+
+If the tool is missing, fails, or names a different business, stop before private
+reads and ask the user to refresh the connector's tool list or reconnect to the
+intended workspace. A confirmation cannot substitute for a successful server
+identity check. Recheck after re-authentication, reconnection, a connection switch,
+an auth/connection error, a tool-list change, or when the user says they changed
+their connection. Keep all subsequent calls on the same verified connector.
 Discover tools only within that connector; namespaces and tool sets vary. Never
 use another account to bypass server access decisions or subscription
 restrictions.
@@ -46,7 +39,10 @@ open /mcp to authenticate proxies-directory. For Claude web/Desktop, use
 Customize → Connectors with the workspace URL supplied during onboarding unless
 the host has visibly provisioned the bundled connection. Bundled provisioning on
 those surfaces is pending verification; do not claim installation alone
-connected them. Direct new customers to https://the-proxies.ai/contact for an
+connected them. If the same URL is also connected through Claude web, the CLI
+may suppress both connections. See the README duplicate-connector workaround;
+a session launched with ENABLE_CLAUDEAI_MCP_SERVERS=false excludes web-synced
+connectors for that process only. Direct new customers to https://the-proxies.ai/contact for an
 initial consultation. Do not ask for credentials in chat or invent a workspace
 URL.
 

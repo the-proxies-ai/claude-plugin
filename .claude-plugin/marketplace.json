@@ -6,11 +6,15 @@
   "plugins": [
     {
       "name": "the-proxies",
-      "source": "./",
+      "source": {
+        "source": "github",
+        "repo": "the-proxies-ai/claude-plugin",
+        "sha": "a15ef7782cfa8cbb01b45259703d4862649f4bc1"
+      },
       "description": "Work with your Proxies business helpers, company knowledge and authorised connections in Claude. An existing Proxies workspace is required; new customers start with a consultation."
     }
   ],
   "metadata": {
-    "description": "Business workflow skills for existing Proxies workspaces."
+    "description": "Business workflow skills for existing Proxies workspaces. The marketplace remains pinned to the released skills-only version during bundled-connection testing."
   }
 }
