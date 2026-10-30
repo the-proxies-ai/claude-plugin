@@ -15,9 +15,10 @@ it available to users.
 ## Existing customers
 
 The intended flow is **install → sign in → connect your workspace**. An onboarding
-update is being tested to connect a sole linked workspace automatically when
+update is deployed to connect a sole linked workspace automatically when
 there are no additional memberships to link. People with multiple eligible
-workspaces retain a chooser. This update has not yet shipped.
+workspaces retain a chooser. Component tests and the deployed web bundle are
+verified; live authenticated proof of the automatic branch remains pending.
 This package includes the remote MCP configuration for
 `https://api.the-proxies.ai/v1/workspace`;
 the helpers, knowledge and business logic remain in
