@@ -12,7 +12,8 @@ testing does not establish directory approval. Keep this change in its draft PR
 until the release gates pass. The marketplace entry is pinned to the released
 1.0.0 commit (`a15ef7782cfa8cbb01b45259703d4862649f4bc1`), so merging
 this beta does not move marketplace users onto its bundled connection. Advancing
-that pin requires a separate reviewed release change after acceptance.
+that pin requires a separate reviewed release change after acceptance, including
+updating the temporary testing wording in the marketplace metadata.
 
 ## Existing customers
 
@@ -35,7 +36,9 @@ workspaces, including businesses with different member passwords. The selected
 workspace is intended to stay fixed for that connection. Enter passwords only on
 the Proxies sign-in page, never in chat.
 
-Existing workspace-specific connections continue to work. The bundled server is
+Existing workspace-specific connections keep their existing tools and access.
+These revised beta skills require get_workspace_identity on either a legacy or
+bundled connection and will not run until that gateway tool is deployed. The bundled server is
 named `proxies-directory`, distinct from legacy `proxies-workspace`. Use one
 connection for a task. In Claude Code, open `/mcp`, select the unused connection
 and disable it using the available connection controls. In web/Desktop, manage
@@ -176,7 +179,8 @@ claude mcp add --transport http --scope user proxies-workspace YOUR_WORKSPACE_UR
 
 Replace the placeholder only with your actual onboarding URL. Do not enable this
 alongside the bundled connection for the same task. Existing customers can keep
-their current working connection throughout the prerelease.
+their current working connection throughout the prerelease; the revised beta
+skills themselves still require the new identity tool.
 
 Directory submission does not imply approval or endorsement by Anthropic.
 
@@ -196,3 +200,7 @@ name and slug. Older installation receipts above cover the previous skill text,
 not acceptance of this revised identity requirement.
 
 Release gate: the same-URL web-synced plus installed CLI connection must work without a workaround, or be explicitly documented as unsupported in the release. The current default combination is unsupported; only the session-only workaround above has passed.
+
+No Claude host is yet confirmed to consume the manifest privacyPolicyUrl field.
+The visible README Privacy Policy link remains the documented privacy reference.
+Verify host handling before claiming manifest-level support.

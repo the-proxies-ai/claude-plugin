@@ -20,11 +20,13 @@ on that selected connector. Use its returned workspace.name and workspace.slug;
 never infer the connection's identity from the task, chat memory, helper names,
 or the user's recollection of sign-in. Do not load memories, company knowledge
 or other business records to discover identity. Show the returned business name.
-If the intended business is already clear and matches, continue without asking
-again. Otherwise ask the user to confirm that business; use the returned slug to
-distinguish similarly named businesses. Never invent an identifier.
+If the intended business name matches exactly and any supplied workspace slug
+also matches, continue without asking again. If the name match is uncertain or
+multiple businesses share the name, ask the user to confirm the returned slug
+before continuing. Never invent an identifier.
 
-If the tool is missing, fails, or names a different business, stop before private
+If the tool is missing, fails, returns no non-empty workspace.name and
+workspace.slug, or names a different business or supplied slug, stop before private
 reads and ask the user to refresh the connector's tool list or reconnect to the
 intended workspace. A confirmation cannot substitute for a successful server
 identity check. Recheck after re-authentication, reconnection, a connection switch,
