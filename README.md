@@ -73,6 +73,21 @@ and your instructions. The Proxies service’s data processing and retention are
 described in our [Privacy Policy](https://the-proxies.ai/privacy). Claude’s own
 processing is governed by Anthropic’s terms and privacy policy.
 
+## Newly added company knowledge
+
+If your first knowledge upload succeeds but Claude cannot find the company
+knowledge search tool, refresh the selected connector's tools in Claude web:
+**Customize → Connectors → Yours → your Proxies connection → More options →
+Refresh tools list**. Then return to the chat and retry the question. Starting
+a new chat alone did not refresh the cached catalogue in our 30 October 2026
+test. Keep the same authorised connection; no disconnect or password reset was
+needed. Verify the answer cites the document you uploaded before treating the
+upload as complete.
+
+This recovery and a sourced search of a fictional Acacia document were verified
+with a manual Claude web custom connector. Other hosts and bundled provisioning
+remain subject to the release checks below.
+
 ## Support
 
 Email [hello@the-proxies.ai](mailto:hello@the-proxies.ai), or use our [contact
